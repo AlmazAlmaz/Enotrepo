@@ -5,12 +5,13 @@ from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtGui import QPainter, QPen, QColor, QPolygon
 from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QMainWindow
 from random import randint
+from Ui import Ui_MainWindow
 
 
-class Example(QMainWindow):
+class Example(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('Ui.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.a = 3
         self.x = 100
@@ -31,7 +32,7 @@ class Example(QMainWindow):
         self.repaint()
 
     def draw_ellipse(self, qp):
-        qp.setBrush(QColor("yellow"))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         x = randint(50, 150)
         qp.drawEllipse(150, 150, x, x)
 
